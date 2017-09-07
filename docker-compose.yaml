@@ -1,0 +1,25 @@
+version: "2"
+services:
+  devserver:
+    build: .docker
+    image: front-site-build
+    volumes:
+      - .:/project
+      - npm-modules:/project/node_modules
+      - dist:/project/dist
+    working_dir: /project
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "npm i && npm start"
+  deploy:
+    build: .docker
+    image: front-site-build
+    volumes:
+      - .:/project
+      - npm-modules:/project/node_modules
+      - dist:/project/dist
+    working_dir: /project
+volumes:
+  npm-modules:
+  dist:

@@ -7,7 +7,7 @@
     "build:static": "cp -r ./src/static/* ./dist/",
     "build:js": "webpack",
     "build:sass": "node-sass ./src/sass/style.sass ./dist/css/style.css --output-style compressed",
-    "start": "npm run build && webpack-dev-server --content-base ./dist"
+    "start": "npm run build && webpack-dev-server --host 0.0.0.0 --content-base ./dist"
   },
   "dependencies": {
     "riot": "^3.7.0",
