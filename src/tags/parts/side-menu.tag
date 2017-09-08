@@ -1,5 +1,5 @@
 <side-menu>
-  <div class="is-overlay mken-side-menu { is-show: opts.menuShow, is-hide: !opts.menuShow }">
+  <div class="is-overlay mken-side-menu { is-show: opts.menuShow && !hide, is-hide: !opts.menuShow || hide }">
     <aside class="menu">
       <ul class="menu-list">
         <li>
@@ -49,5 +49,10 @@
   </style>
 
   <script>
+    menuHide() {
+      this.hide = true;
+      this.update();
+      setTimeout(() => { this.hide = false }, 500);
+    }
   </script>
 </side-menu>
