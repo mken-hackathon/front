@@ -40,6 +40,12 @@ const PRESET_FIELDS = [
       <preset-field each = { f, i in this.fields } 
         field = { f }
       />
+      <div class="has-text-centered button-area">
+        <a class="button is-primary is-fullwidth" onclick={ onSubmit } >
+          <span class="icon"><i class="fa fa-heart"/></span>
+          <span>設定更新</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -53,14 +59,41 @@ const PRESET_FIELDS = [
     .preset-fields .container {
       border-top: solid 1px #dbdbdb;
     }
+    .preset-fields .button-area {
+      padding: 1.5rem 3rem;
+    }
   </style>
 
   <script>
     this.fields = PRESET_FIELDS;
 
     this.on("before-mount", () => {
-
+      const presets = [
+        { action: "腕立て", amount: "30回" },
+        { action: "瞑想", amount: "5分" },
+      ];
+      this.mergeState(presets);
     });
+
+    mergeState(presetActivities) {
+      this.fields = this.fields.map(f => {
+        const exists = presetActivities.find(p => p.action === f.action);
+        if(exists) {
+          return Object.assign({ checked: true, amount: exists.amount}, f);
+        } else {
+          return Object.assign({ checked: false, amount: "" }, f);
+        }
+      });
+      this.update();
+    }
+
+    onSubmit() {
+      const presetFields = this.tags["preset-field"];
+      const checkedActivities = presetFields.filter(f => f.checked).map(f => {
+        return { action: f.action, amount: f.selected }
+      });
+      console.log(checkedActivities);
+    }
   </script>
 </preset-page>
 
@@ -68,16 +101,16 @@ const PRESET_FIELDS = [
   <div class="field">
     <div class="control">
       <label class="label">
-        <input type="checkbox" />
-        {action}
+        <span class="icon"><i class="fa { icon(checked) }" /></span>
+        <span>{action}</span>
       </label>
       <p class="help">{ description }</p>
     </div>
     <div class="control">
       <div class="select">
-        <select>
+        <select ref="amount" onchange={fieldChanged}>
           <option></option>
-          <option each={e,i in selects}>{e}</option>
+          <option each={e,i in selects} selected={e === parent.selected} >{e}</option>
         </select>
       </div>
     </div>
@@ -98,7 +131,20 @@ const PRESET_FIELDS = [
   <script>
     const field = this.opts.field;
     this.action = field.action;
+    this.checked = field.checked;
     this.description = field.description;
     this.selects = field.selects;
+    this.selected = field.amount;
+
+    icon(value) {
+      return value ? "fa-check-square-o" : "fa-square-o";
+    }
+
+    fieldChanged() {
+      this.checked = this.refs["amount"].value ? true : false;
+      this.selected = this.refs["amount"].value;
+      this.update();
+      console.log(this.checked, this.selected)
+    }
   </script>
 </preset-field>
