@@ -1,4 +1,5 @@
-import { getButtonPreset } from "../../lib/api";
+import { getButtonPreset, putButtonPreset } from "../../lib/api";
+import route from "riot-route";
 
 const PRESET_FIELDS = [
   { 
@@ -41,7 +42,7 @@ const PRESET_FIELDS = [
         </a>
         <span>{ name }</span>
       </h1>
-      <h2 class="subtitle has-text-grey-light">{opts.bid}</h2>
+      <h2 class="subtitle has-text-grey-light">{bid}</h2>
       <p>ボタンにプリセットするアクティビティ項目を設定しよう</p>
     </div>
   </section>
@@ -78,18 +79,13 @@ const PRESET_FIELDS = [
   </style>
 
   <script>
+    this.bid = this.opts.bid;
     this.fields = PRESET_FIELDS;
 
     this.on("before-mount", async () => {
-      const btn = await getButtonPreset(this.opts.bid);
+      const btn = await getButtonPreset(this.bid);
       this.name = btn.btnname;
       this.update();
-      /*
-      const presets = [
-        { action: "腕立て", amount: "30回" },
-        { action: "瞑想", amount: "5分" },
-      ];
-      */
       this.mergeState(btn.activities);
     });
 
@@ -108,12 +104,13 @@ const PRESET_FIELDS = [
       this.update();
     }
 
-    onSubmit() {
+    async onSubmit() {
       const presetFields = this.tags["preset-field"];
       const checkedActivities = presetFields.filter(f => f.checked).map(f => {
         return { action: f.action, amount: f.selected }
       });
-      console.log(checkedActivities);
+      const r = await putButtonPreset(this.bid, checkedActivities);
+      route("/buttons");
     }
   </script>
 </preset-page>

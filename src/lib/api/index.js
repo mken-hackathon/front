@@ -19,3 +19,7 @@ export async function getButtonPreset(bid) {
   return r.data.button;
 }
 
+export async function putButtonPreset(bid, presetActivities) {
+  const r = await agent.put(`/button/${bid}/preset`, { activities: presetActivities });
+  return r.data;
+}
