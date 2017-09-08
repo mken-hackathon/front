@@ -6,7 +6,7 @@ import "./side-menu.tag";
       <li><figure class="image is-48x48"><img src="/img/favicon.png" /></figure></li>
       <li><figure class="image is-48x48"><img src="/img/event.png" /></figure></li>
       <li>
-        <a href="#/main">
+        <a href="#/activities" onclick={menuHide}>
           <figure class="image is-48x48"><img src="/img/register.png" /></figure>
         </a>
       </li>
@@ -35,6 +35,10 @@ import "./side-menu.tag";
     this.menuShow = false;
     menuClick() {
       this.update({menuShow: !this.menuShow});
+    }
+
+    menuHide() {
+      this.update({menuShow: false});
     }
   </script>
 </mken-header>
