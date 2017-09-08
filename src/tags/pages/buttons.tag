@@ -1,23 +1,26 @@
+import { getButtons } from "../../lib/api";
 <buttons-page>
   <header class="hero is-primary">
     <h2 class="subtitle is-5 has-text-centered">M健ダッシュボタン設定</h2>
   </header>  
   <section class="section">
     <p>プリセット設定をしたいボタンを選んでください</p>
-    <button-item each={btn , i in buttons} 
+    <dash-button each={btn , i in buttons} 
       id={ btn.bid } name={ btn.btnname }
     />
   </section>
 
   <script>
-    this.buttons = [
-      { bid: "xxxxxx", btnname: "Aボタン" },
-      { bid: "yyyyy", btnname: "Bボタン" },
-    ]
+    this.buttons = [];
+
+    this.on("mount", async () => {
+      const buttons = await getButtons();
+      this.update({ buttons })
+    })
   </script>
 </buttons-page>
 
-<button-item>
+<dash-button>
   <div class="card">
     <div class="card-content">
       <div class="left">
@@ -48,4 +51,4 @@
       justify-content: space-between;
     }
   </style>
-</button-item>
+</dash-button>

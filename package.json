@@ -11,6 +11,7 @@
     "deploy": "rm -rf ./dist/* && npm run build && ./scripts/deploy"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "config": "^1.26.2",
     "riot": "^3.7.0",
     "riot-route": "^3.1.2"
