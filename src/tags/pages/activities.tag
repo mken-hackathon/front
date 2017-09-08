@@ -36,13 +36,13 @@ import moment from "moment";
       display: flex;
       justify-content: space-between;
       padding: 0.5rem;
-      border-bottom: solid 1px #d7e4bd;
+      border-bottom: solid 1px #dbdbdb;
     }
   </style>
 
   <script>
     this.action = this.opts.activity.action;
     this.amount = this.opts.activity.amount;
-    this.timestamp = moment(new Date(this.opts.activity.timestamp)).format("MM/DD H:mm");
+    this.timestamp = moment(new Date(this.opts.activity.timestamp)).format("MM/DD H:mm:ss");
   </script>
 </activity-item>
