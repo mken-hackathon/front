@@ -47,4 +47,5 @@
       color: white;
     }
   </style>
+
 </side-menu>
