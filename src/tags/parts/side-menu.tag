@@ -6,7 +6,7 @@
           <a class="list-group-item" href="/users/howto">入力方法</a>
         </li>
         <li>
-          <a class="list-group-item" href="#/preset">M健ダッシュボタン</a>
+          <a class="list-group-item" href="#/buttons">M健ダッシュボタン</a>
         </li>
         <li>
           <a class="list-group-item" href="/users/incentive">インセンティブ</a>

@@ -1,5 +1,6 @@
 import route from "riot-route";
 import "./tags/pages/main.tag";
+import "./tags/pages/buttons.tag";
 import "./tags/pages/preset.tag";
 import "./tags/parts/header.tag";
 
@@ -16,6 +17,9 @@ import "./tags/parts/header.tag";
     });
     this.route("/preset", () => {
       riot.mount("#page-content", "preset-page");      
+    });
+    this.route("/buttons", () => {
+      riot.mount("#page-content", "buttons-page");
     });
 
     route.start(true);
