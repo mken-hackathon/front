@@ -8,3 +8,8 @@ export async function getButtons() {
   const r = await agent.get("/buttons");
   return r.data.buttons;
 }
+
+export async function getActivities() {
+  const r = await agent.get("/activities");
+  return r.data.activities;
+}
