@@ -1,3 +1,5 @@
+import { getButtonPreset } from "../../lib/api";
+
 const PRESET_FIELDS = [
   { 
     action: "腹筋" , selects: ["10回", "30回", "50回", "100回"] ,
@@ -27,11 +29,19 @@ const PRESET_FIELDS = [
 
 <preset-page>
   <header class="hero is-primary">
-    <h2 class="subtitle is-5 has-text-centered">M健ダッシュボタン設定</h2>
+    <h2 class="subtitle is-5 has-text-centered">
+      <span>M健ダッシュボタン設定</span>
+    </h2>
   </header>
   <section class="hero">
     <div class="hero-head">
-      <h1 class="title">{opts.bid}</h1>
+      <h1 class="title">
+        <a href="#/buttons">
+          <span class="icon is-medium"><i class="fa fa-chevron-circle-left" /></span>
+        </a>
+        <span>{ name }</span>
+      </h1>
+      <h2 class="subtitle has-text-grey-light">{opts.bid}</h2>
       <p>ボタンにプリセットするアクティビティ項目を設定しよう</p>
     </div>
   </section>
@@ -62,20 +72,31 @@ const PRESET_FIELDS = [
     .preset-fields .button-area {
       padding: 1.5rem 3rem;
     }
+    .subtitle {
+      padding-left: 3rem;
+    }
   </style>
 
   <script>
     this.fields = PRESET_FIELDS;
 
-    this.on("before-mount", () => {
+    this.on("before-mount", async () => {
+      const btn = await getButtonPreset(this.opts.bid);
+      this.name = btn.btnname;
+      this.update();
+      /*
       const presets = [
         { action: "腕立て", amount: "30回" },
         { action: "瞑想", amount: "5分" },
       ];
-      this.mergeState(presets);
+      */
+      this.mergeState(btn.activities);
     });
 
     mergeState(presetActivities) {
+      if(!(Array.isArray(presetActivities) && presetActivities.length > 0)) {
+        return;
+      }
       this.fields = this.fields.map(f => {
         const exists = presetActivities.find(p => p.action === f.action);
         if(exists) {

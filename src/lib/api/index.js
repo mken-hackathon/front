@@ -13,3 +13,9 @@ export async function getActivities() {
   const r = await agent.get("/activities");
   return r.data.activities;
 }
+
+export async function getButtonPreset(bid) {
+  const r = await agent.get(`/buttons/${bid}`);
+  return r.data.button;
+}
+
