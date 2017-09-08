@@ -15,8 +15,8 @@ import "./tags/parts/header.tag";
     this.route("/main", () => {
       riot.mount("#page-content", "main-page");
     });
-    this.route("/preset", () => {
-      riot.mount("#page-content", "preset-page");      
+    this.route("/buttons/*/preset", (bid) => {
+      riot.mount("#page-content", "preset-page", { bid });      
     });
     this.route("/buttons", () => {
       riot.mount("#page-content", "buttons-page");
