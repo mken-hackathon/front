@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+process.env.NODE_ENV = process.env.NODE_ENV || "DEV"; 
+const config = require("config");
+const proc = require("child_process");
+const path = require("path");
+const co = require("co");
+const DIST_PATH = path.resolve(__dirname, "../dist");
+const AWS_PROFILE = process.env.AWS_PROFILE || process.env.AWS_DEFAULT_PROFILE || "default";
+co(function*(){
+  const DEPLOY_COMMAND = `aws s3 sync ${DIST_PATH} s3://${config.Deploy.BucketName} --profile ${AWS_PROFILE}`
+  yield execCli(DEPLOY_COMMAND);
+  const REMOVE_CACHE = `aws cloudfront create-invalidation --distribution-id ${config.Deploy.CloudFront} --paths "/*" --profile ${AWS_PROFILE}`
+  yield execCli(REMOVE_CACHE);
+}).then(()=>{
+  process.exit(0);
+}).catch(err => {
+  console.error(err);
+  process.exit(1);
+});
+function execCli(command) {
+  return new Promise((res, rej) => {
+    console.log(command);
+    proc.exec(command, (err, stdout, stderr) => {
+      if(err) {
+        console.error(stdout);
+        return rej(err);
+      }
+      console.log(stdout);
+      return res();
+    });
+  })
+}
