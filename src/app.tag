@@ -21,6 +21,9 @@ import "./tags/parts/header.tag";
     this.route("/buttons", () => {
       riot.mount("#page-content", "buttons-page");
     });
+    this.route(() => {
+      route("/activities");
+    });
 
     route.start(true);
   </script>
