@@ -3,25 +3,25 @@
     <aside class="menu">
       <ul class="menu-list">
         <li>
-          <a class="list-group-item" href="/users/howto">入力方法</a>
+          <a class="list-group-item">入力方法</a>
         </li>
         <li>
-          <a class="list-group-item" href="#/buttons">M健ダッシュボタン</a>
+          <a class="list-group-item" href="#/buttons" onclick={menuHide} >M健ダッシュボタン</a>
         </li>
         <li>
-          <a class="list-group-item" href="/users/incentive">インセンティブ</a>
+          <a class="list-group-item">インセンティブ</a>
         </li>
         <li>
-          <a class="list-group-item" href="/users/tos">利用規約</a>
+          <a class="list-group-item">利用規約</a>
         </li>
         <li>
-          <a class="list-group-item" href="/users/privacy">個人情報について</a>
+          <a class="list-group-item">個人情報について</a>
         </li>
         <li>
-          <a class="list-group-item" target="_blank" href="/documents/faq.pdf">お問合せ・FAQ</a>
+          <a class="list-group-item">お問合せ・FAQ</a>
         </li>
         <li>
-          <a class="list-group-item" rel="nofollow" data-method="delete" href="/users/session">ログアウト</a>
+          <a class="list-group-item" rel="nofollow" data-method="delete">ログアウト</a>
         </li>
       </ul>
     </aside>
@@ -48,4 +48,6 @@
     }
   </style>
 
+  <script>
+  </script>
 </side-menu>
