@@ -66,6 +66,7 @@ import moment from "moment";
     }
     .is-new {
       opacity: 0.1;
+      background-color: yellow;
     }
   </style>
 
