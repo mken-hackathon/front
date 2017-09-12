@@ -1,7 +1,7 @@
 import { getButtons } from "../../lib/api";
 <buttons-page>
   <header class="hero is-primary">
-    <h2 class="subtitle is-5 has-text-centered">M健ダッシュボタン設定</h2>
+    <h2 class="subtitle is-5 has-text-centered">エム健ダッシュボタン設定</h2>
   </header>  
   <section class="section">
     <p>プリセット設定をしたいボタンを選んでください</p>

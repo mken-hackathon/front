@@ -31,7 +31,7 @@ const PRESET_FIELDS = [
 <preset-page>
   <header class="hero is-primary">
     <h2 class="subtitle is-5 has-text-centered">
-      <span>M健ダッシュボタン設定</span>
+      <span>エム健ダッシュボタン設定</span>
     </h2>
   </header>
   <section class="hero">
