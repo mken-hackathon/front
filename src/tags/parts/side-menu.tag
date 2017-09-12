@@ -5,8 +5,8 @@
         <li>
           <a class="list-group-item">入力方法</a>
         </li>
-        <li>
-          <a class="list-group-item" href="#/buttons" onclick={menuHide} >M健ダッシュボタン</a>
+        <li class="is-available">
+          <a class="list-group-item" href="#/buttons" onclick={menuHide} >エム健ダッシュボタン</a>
         </li>
         <li>
           <a class="list-group-item">インセンティブ</a>
@@ -45,6 +45,12 @@
     }
     .menu-list a {
       color: white;
+    }
+
+    .menu-list li.is-available {
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0px 0px 20px 15px #728e3a inset;
     }
   </style>
 
